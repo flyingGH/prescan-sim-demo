@@ -4,7 +4,7 @@ Hosted at Eindhoven University of Technology's (TU/e) Autonomous Motion Control 
 # Introduction
 The project seamlessly integrates the capabilities of PreScan ADAS (by Siemens) — a leading simulation platform for ADAS (Advanced Driver Assistance Systems) — with Simulink and the Robot Operating System (ROS) to effectively control an F1TENTH car system. Employing a modular ROS architecture, different control algorithms can be swapped allowing comparison between . Currently, a built-in version of the geometric path-following algorithm known as pure pursuit is implemented, in which the car interprets and follows waypoints to navigate its environment.
 
-![Demonstration of the F1TENTH Car System](docs/gifs/prescan_f1tenth.gif)
+![Demonstration of the F1TENTH Car System](gifs/prescan_f1tenth.gif)
 
 ## About Prescan
 PreScan offers engineers and researchers an environment to design and validate autonomous driving technologies without the initial need for real-world testing. It provides the capability to generate intricate traffic scenarios, capturing the complexity of real-world driving situations. For the F1tenth PreScan project, scenarios are inclusive of dynamic traffic elements like variable traffic light patterns and pedestrians at intersections.
@@ -25,11 +25,11 @@ The general data flow is as follows:
 Below, is an overview of the communication between the different system components, including ROS nodes, for real and simulated environments.
 
 ### Real Environment
-![Information pipeline of this project](docs/images/system-components-real.png)
+![Information pipeline of this project](images/system-components-real.png)
 
 
 ### Simulated Enviroment
-![Information pipeline of this project](docs/images/system-components-sim.png)
+![Information pipeline of this project](images/system-components-sim.png)
 
 # System Requirements
 
