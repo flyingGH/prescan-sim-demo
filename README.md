@@ -192,10 +192,13 @@ To normally run the simulation, you **must** first run the ROS network on the ta
     - **`rviz`:** this launches a pre-configured RViZ session for debugging. This flas is only available when used with a `sim` environment due to F1tenth's lack of a display. However, you can separately run this node in another local linux computer  as shown in step 4. Default is `true`.
 
 ### Run Experiment: Host Side
-- Under directory `prescan\examples\PrescanDemoAMC`, run the `main.m` script, allowing the prompted folder changes. This should also start the Prescan Viewer. There might be a dialog prompting reminding the usage of integrated graphic card, for which you need to click it out. 
-- Running the script may take several minutes to render and update models. Ultimately, the Prescan Viewer should start rendering the simulation; You will see a vehicle waiting in front of the red traffic light. After a while, when the traffic light turns green, the car will continue to move. The simulation looks like this:
+- Under directory `prescan\examples\PrescanDemoAMC`, run the `main.m` script, allowing the prompted folder changes. This should also start the Prescan Viewer. There might be a dialog prompting reminding the usage of the integrated graphic card, for which you need to click it out. 
+- Running the script may take several minutes to render and update models, especially for the first time. Successive rendering may be faster given existing files.
+- Ultimately, the Prescan Viewer should start rendering the simulation; You will see a vehicle waiting in front of the red traffic light. After a while, when the traffic light turns green, the car will continue to move. The simulation looks like this:
 
     ![Demonstration of the F1TENTH Car System](docs/gifs/sim.gif)
+
+- **Note**: if the rendering takes too long, the demo may fail. In this case, just kill the MATLAB simulation progress and the ROS node, and restart the experiment. 
 
 ### Debugging in ROS
 
