@@ -1,4 +1,4 @@
-# F1tenth PreScan Project
+# F1tenth PreScan Project (Detailed Manual)
 Hosted at Eindhoven University of Technology's (TU/e) Autonomous Motion Control (AMC) lab, the **F1tenth PreScan** project bridges the gap between advanced simulation and real-world applications in autonomous vehicles.
 
 # Introduction
