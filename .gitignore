@@ -30,13 +30,13 @@ logs/
 
 # MATLAB or Simulink
 prescan/examples/PrescanDemoAMC/*.slxc
-prescan/examples/PrescanDemoAMC/*.slx
+prescan/examples/*/*.slx
 prescan/examples/PrescanDemoAMC/*.pb
 prescan/examples/PrescanDemoAMC/*.references
 prescan/examples/PrescanDemoAMC/*.tunable
 prescan/examples/PrescanDemoAMC/*.mat
 prescan/examples/PrescanDemoAMC/*.asv
-prescan/examples/PrescanDemoAMC/*.r2018b
+prescan/examples/*/*.r2018b
 
 # Others
 *.swp
