@@ -29,14 +29,14 @@ logs/
 !.vscode/extensions.json
 
 # MATLAB or Simulink
-*.slxc
-*.slx
-*.pb
-*.references
-*.tunable
-*.mat
-*.asv
-*.r2018b
+prescan/examples/PrescanDemoAMC/*.slxc
+prescan/examples/PrescanDemoAMC/*.slx
+prescan/examples/PrescanDemoAMC/*.pb
+prescan/examples/PrescanDemoAMC/*.references
+prescan/examples/PrescanDemoAMC/*.tunable
+prescan/examples/PrescanDemoAMC/*.mat
+prescan/examples/PrescanDemoAMC/*.asv
+prescan/examples/PrescanDemoAMC/*.r2018b
 
 # Others
 *.swp
