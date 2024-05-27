@@ -1,0 +1,34 @@
+# ---------- General Agent Parameters ----------
+
+agent: 'random'                 # default agent selection
+max_fps: 60                     # agent refresh rate (zero updates agent as fast as possible)
+sloth_speed : 0.2               # sloth mode speed
+
+# -------- Algorithm-Specific Parameters --------
+
+# Pure Pursuit
+min_lookahead_distance: 0.2       # minimum value of adaptive look-ahead (curves)
+max_lookahead_distance: 1.0       # maximum value of adaptive look-ahead (straight lines)
+max_reacquire: 100.0              # max allowed distance of waypoints from car
+waypoint_complete_dist: 0.4       # distance in which you consider the waypoints reached
+visible_waypoints: 50             # number of visible waypoints to the car
+max_unaffected_speed : 1.2        # maximum speed at which the velocity is unaffected by a reduction factor
+steering_threshold : 0.4          # angle at which the velocity is reduced
+
+# -------- Environment-Specific Parameters --------
+
+# Traffic Lights (static)
+traffic_light_stop_dist: 1.3      # [m]: distance at which the car starts braking for traffic light
+traffic_light_min_stop_dist: 0.3  # [m]: min distance at which the car will completely halt
+traffic_light_crit_angle: 2.7     # [rad]: cone angle threshold which traffic lights affect the car's behaviour
+
+# Pedestrians (dynamic) 
+pedestrian_stop_dist: 1.5         # [m]: distance at which the car starts braking for pedestrian
+pedestrian_min_stop_dist: 0.5     # [m]: min distance at which the car will completely halt
+pedestrian_timeout: 2.0           # [s]: max time interval of last received message before ignoring pedestrian
+
+# Drivers (dynamic)
+driver_stop_dist: 1.5             # [m]: distance at which the car starts braking for other drivers
+driver_min_stop_dist: 0.5         # [m]: min distance from other drivers at which the car will completely halt
+driver_timeout: 5.0               # [s]: max time interval of last received message before ignoring drivers
+driver_same_dir_range: 0.785      # [rad]: angle range at which the drivers are considered to be going at the same direction

@@ -1,0 +1,46 @@
+# From car/sim to agent
+scan_topic: 'scan'
+odom_topic: 'odom'
+done_topic: 'done'
+race_info_topic: 'race_info'
+drive_raw_topic: 'cmd_vel_unfiltered'
+drive_final_topic: 'cmd_vel'
+system_ready_topic: 'system_ready'
+reset_topic: 'reset'
+
+# Prescan topics
+prescan_status_topic: '/status'
+path_topic: 'path'
+traffic_lights_topic: /traffic_light
+pedestrian_topic: sensor
+
+# safety_node topics
+emergency_flag_topic: 'emergency_flag'
+
+# Visualization topics
+viz_car_topic: 'viz/car'
+viz_fov_topic: 'viz/fov'
+viz_waypoints_topic: 'viz/waypoints'
+viz_lookahead_topic: 'viz/lookahead'
+viz_traffic_light_topic: 'viz/traffic_light'
+viz_pedestrian_topic: 'viz/pedestrian'
+viz_text_topic: 'viz/text'
+
+motor_speed_topic: 'commands/motor/speed'
+servo_position_topic: 'commands/servo/position'
+
+# Vicon topics
+vicon_car_1_pose_topic: '/vrpn_client_node/Car_1_Tracking/pose'
+vicon_car_1_twist_topic: '/vrpn_client_node/Car_1_Tracking/twist'
+vicon_car_1_acc_topic: '/vrpn_client_node/Car_1_Tracking/acc'
+
+vicon_car_2_pose_topic: '/vrpn_client_node/Car_2_Tracking/pose'
+vicon_car_2_twist_topic: '/vrpn_client_node/Car_2_Tracking/twist'
+vicon_car_2_acc_topic: '/vrpn_client_node/Car_2_Tracking/acc'
+
+vicon_car_3_pose_topic: '/vrpn_client_node/Car_3_Tracking/pose'
+vicon_car_3_twist_topic: '/vrpn_client_node/Car_3_Tracking/twist'
+vicon_car_3_acc_topic: '/vrpn_client_node/Car_3_Tracking/acc'
+
+# Waypoint csv path
+waypoint_path_topic: 'waypoint_csv_path'

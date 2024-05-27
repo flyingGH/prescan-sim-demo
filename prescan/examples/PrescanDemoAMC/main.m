@@ -1,0 +1,11 @@
+clc;
+addpath(genpath('src'));
+disp('Creating configuration files...');
+CreateConfigurations;
+disp('Configuration files created.');
+disp('Updating models...');
+disp('This process may take a few minute...');
+UpdateModel;
+disp('Model updated successfully!');
+disp('Running the experiment...');
+runExperiment;

@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- :::::::::::::::::::::: D O C U M E N T A T I O N :::::::::::::::::::: -->
+
+  <!-- Launch file arguments arguments:
+    agent                           :   Select agent algorithm ("random", "straight", "nothing", "pure_pursuit)
+    env                             :   Choose the environment to launch ("sim", "real_car")
+    rviz                            :   Use RViZ (true/false)
+    safety                          :   Launch the emergency system (true/false)
+    offline                         :   Run without dependence on PreScan/SIMULINK (true/false)
+  -->
+  
+  <!-- Additional real_car arguments:
+    car_id : "1" or "2" or "3"      :   Choose the preferred car to work with
+    sloth_mode : "True/False"       :   Drives the car very slowly to debug its path
+  -->
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <!-- choose the preferred car to work with -->
+  <arg name="car_id" default="3"/>
+
+  <group ns="car_$(arg car_id)">
+    <param name="car_id" value="$(arg car_id)"/>
+
+    <!-- Load general parameters -->
+    <rosparam command="load" file="$(find agent)/config/agent.yaml"/>
+    <rosparam command="load" file="$(find agent)/config/topics.yaml"/>
+
+    <!-- choose the environment to launch ("sim", "real_car") -->
+    <arg name="env" default="real_car"/>
+    <param name="env" value="$(arg env)"/>
+
+    <!-- run without dependence on PreScan/SIMULINK (true/false) -->
+    <arg name="offline" default="false"/>
+    <param name="offline" value="$(arg offline)"/>
+
+    <!-- choose whether to enable the safety filter system -->
+    <arg name="safety" default="true"/>
+    <param name="safety" value="$(arg safety)"/>
+
+    <!-- static transformation from world to map -->
+    <node pkg="tf" type="static_transform_publisher" name="world_to_map" args="0 0 0 0 0 0 world map 0.1"/>
+
+    <!-- A. Simulation Environment (conditional) -->
+    <group if="$(eval arg('env') == 'sim')">
+
+      <rosparam command="load" file="$(find agent)/config/simulator.yaml"/>
+      
+      <!-- Launch simulator node -->
+      <node pkg="agent" name="simulator" type="simulator.py" output="screen"/>
+      <!-- <node pkg="agent" name="simulator" type="PurePursuitSim.py" output="screen"/> -->
+
+      <!-- Launch Rviz (sim configuration)-->
+      <arg name="rviz" default="false"/>
+      <param name="rviz" value="$(arg rviz)"/>
+      <group if="$(eval arg('rviz'))">
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find agent)/rviz/agent_sim.rviz" output="screen"/>
+      </group>
+
+    </group>
+
+    <!-- B. Real Car Environment (conditional) -->
+    <group if="$(eval arg('env') == 'real_car')">
+
+      <!-- load VESC parameters -->
+      <rosparam command="load" file="$(find agent)/config/vesc.yaml"/>
+
+      <!-- use sloth mode in case you want to debug the car's path -->
+      <arg name="sloth_mode" default="false"/>
+      <param name="sloth_mode" value="$(arg sloth_mode)"/>
+
+      <!-- convert Twist to Motor Speed and Servo Position -->
+      <node pkg="agent" name="cmd_vel_to_vesc" type="cmd_vel_to_vesc.py" output="screen"/>
+
+      <!-- enable VESC -->
+      <node name="vesc_driver_node" pkg="vesc_driver" type="vesc_driver_node" output="screen">
+        <param name="port" value="/dev/sensors/vesc"/>
+      </node>
+
+      <!-- vicon client node -->
+      <node name="vrpn_client_node" pkg="vrpn_client_ros" type="vrpn_client_node" output="screen">
+        <param name="server" type="str" value="131.155.34.241" />
+        <param name="port" type="int" value="3883" />
+        <param name="update_frequency" type="double" value="100.0" />
+        <param name="frame_id" type="str" value="world" />
+        <param name="use_server_time" type="bool" value="false"/>
+        <param name="broadcast_tf" type="bool" value="true" />
+        <param name="refresh_tracker_frequency" type="double" value="1.0" />
+      </node>
+
+      <!-- Send zeros to start vesc_to_odom-->
+      <node pkg="rostopic" type="rostopic" name="rostopic" args="pub sensors/servo_position_command std_msgs/Float64 0"/>
+
+    </group>
+
+    <!-- agent node-->
+    <arg name="agent" default="pure_pursuit"/>
+    <param name="agent" value="$(arg agent)"/>
+    <node pkg="agent" name="agent_manager" type="agent_manager.py" output="screen"/>
+    <node pkg="agent" name="vicon_to_odom" type="vicon_to_odom.py" output="screen"/>
+
+    <!-- Run an emulated PreScan/SIMULINK path generator for full independency -->
+    <group if="$(eval arg('offline'))">
+      <param name="safety" value="false"/>
+      <param name="csv_path" value="$(find agent)/maps/amc_prescan_500.csv"/>
+      <node pkg="agent" name="path_generator" type="path_generator.py" output="screen"/>
+    </group>
+
+    <group unless="$(eval arg('offline'))">
+      <!-- emergency system (conditional) (only works in online mode)-->
+      <group if="$(eval arg('safety'))">
+        <!-- LIDAR sensor -->
+        <!-- <node name="urg_node" pkg="urg_node" type="urg_node">
+          <param name="ip_address" value="192.168.0.15" />
+        </node> -->
+        <!-- Run the safety filter which checks for pedestrians and traffic lights -->
+        <node pkg="agent" name="safety_filter" type="safety_filter.py" output="screen"/>
+      </group>
+    </group>
+
+    <!-- Run the visualizer node, so that the information can be seen graphically -->
+    <arg name="visualize" default="true"/>
+    <group if="$(eval arg('visualize'))">
+      <node pkg="agent" name="visualizer" type="visualizer.py" output="screen"/>
+    </group>
+
+  </group>
+
+</launch>

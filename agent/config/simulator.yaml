@@ -1,0 +1,8 @@
+# ---------- Simulator Parameters ----------
+
+Kp : 1.0                # speed proportional term
+Kd : 0.9                # speed derivative term
+time_tick : 1.0         # time tick
+wheel_base : 0.25       # [m] wheel base of vehicle
+
+max_speed : 1.0

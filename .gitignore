@@ -1,0 +1,50 @@
+# Python
+*.py[cod]
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+*.venv/
+*.virtualenv/
+__pycache__/
+build/
+dist/
+.Python
+db.sqlite3
+*.sqlite
+
+# ROS (Robot Operating System)
+devel/
+build/
+logs/
+*.bag
+*.bag.active
+*.bag.orig
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# MATLAB or Simulink
+*.slxc
+*.slx
+*.pb
+*.references
+*.tunable
+*.mat
+*.asv
+
+# Others
+*.swp
+*.swo
+*.swn
+*.DS_Store
+*.log
+*/traffic_configuration.xml
+*/vehicle_configuration.xml
+
+# If you have a specific environment or other sensitive files
+.env
