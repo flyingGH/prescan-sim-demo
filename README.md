@@ -5,21 +5,21 @@ Hosted at Eindhoven University of Technology's (TU/e) Autonomous Motion Control 
 
 This project was created and is maintained by a group of people working for the Autonomous Motion Control (AMC) lab at the Eindhoven University of Technology. If you encounter any issues or have further questions, please contact one of the project's group members.
 
-- Giannis Badakis (i.badakis@student.tue.nl)
-- Michalis Galanis (m.galanis@student.tue.nl)
-- Adam Baversi (a.bavarsi@student.tue.nl)
+- **Giannis Badakis** (i.badakis@student.tue.nl)
+- **Michalis Galanis** (m.galanis@student.tue.nl)
+- **Adam Baversi** (a.bavarsi@student.tue.nl)
 
 ### Wiki Know-How
 
-This document provides the basic information on the prerequisite, the installation, and the running of this project. Refer to the following files for detailed information on specific components of the project.
+This document provides quick guidance on how to run this project. Refer to the following files for detailed information on specific components of the project.
 
-- Refer to the wiki document [wiki ReadMe](wiki/README.md) for detailed information on system architecture;
-- Refer to the document [PreScan ReadMe](PreScan/experiments/AMC_LAB_MAP_One_Car/README.md) for detailed information on PreScan and the Simulink library;
-- Refer to the document [ROS ReadMe](ROS/pure_pursuit/README.md) for detailed information on the ROS configuration for the control of vehicle models.
+- Refer to the wiki document [wiki ReadMe](docs/README.md) for detailed information on system architecture;
+- Refer to the document [PreScan ReadMe](prescan/experiments/AMC_LAB_MAP_One_Car/README.md) for detailed information on PreScan and the Simulink library;
+- Refer to the document [ROS ReadMe](agent/README.md) for detailed information on the ROS configuration for the control of vehicle models.
 
 ## Requirements for Simulation
 
-This simulation requires all the following components to be ready
+This simulation requires all the following components to be ready.
 
 ### Host (Computer)
 
@@ -48,7 +48,7 @@ The target is used to run the virtual models of the vehicles
 
 ### Network Connection
 
-The host should be connected to an **external** network (e.g., a wifi). Meanwhile, the host and target should be connected with an **internal** network. The following information must be noted down:
+The host and the target should be connected to a **common** network (within the same subnet). If the target is a virtual machine, the network. The following information must be noted down:
 
 - `hostip`: the IP address of the host in the **external network**;
 - `hostname`: the name of the host;
