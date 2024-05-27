@@ -54,6 +54,7 @@ prescan/examples/PrescanDemoAMC/Actors/*
 prescan/examples/PrescanDemoAMC/log/*
 prescan/examples/PrescanDemoAMC/Results/*
 prescan/examples/PrescanDemoAMC/*.xml
+prescan/examples/PrescanDemoAMC/*.backup
 
 # If you have a specific environment or other sensitive files
 .env
