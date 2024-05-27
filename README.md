@@ -14,7 +14,7 @@ This project was created and is maintained by a group of people working for the 
 This document provides quick guidance on how to run this project. Refer to the following files for detailed information on specific components of the project.
 
 - Refer to the wiki document [wiki ReadMe](docs/README.md) for detailed information on system architecture;
-- Refer to the document [PreScan ReadMe](prescan/experiments/AMC_LAB_MAP_One_Car/README.md) for detailed information on PreScan and the Simulink library;
+- Refer to the document [PreScan ReadMe](prescan/examples/PrescanDemoAMC/README.md) for detailed information on PreScan and the Simulink library;
 - Refer to the document [ROS ReadMe](agent/README.md) for detailed information on the ROS configuration for the control of vehicle models.
 
 ## Requirements for Simulation
