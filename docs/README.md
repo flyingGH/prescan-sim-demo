@@ -47,13 +47,13 @@ In the diagram below, the AMC lab's configuration between the various systems is
 ### Real Environment
 
 <p align="center">
-  <img src="docs/images/communication-real.png">
+  <img src="images/communication-real.png">
 </p>
 
 ### Simulation Environment
 
 <p align="center">
-  <img src="docs/images/communication-sim.png">
+  <img src="images/communication-sim.png">
 </p>
 
 ## Software
