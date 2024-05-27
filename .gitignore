@@ -36,6 +36,7 @@ logs/
 *.tunable
 *.mat
 *.asv
+*.r2018b
 
 # Others
 *.swp
@@ -43,9 +44,16 @@ logs/
 *.swn
 *.DS_Store
 *.log
-*.r2018b
+
+# Prescan
+prescan/examples/PrescanDemoAMC/+bus_conv_fcns/*
+prescan/examples/PrescanDemoAMC/Models/*
+prescan/examples/PrescanDemoAMC/Temp/*
+prescan/examples/PrescanDemoAMC/slprj/*
+prescan/examples/PrescanDemoAMC/Actors/*
+prescan/examples/PrescanDemoAMC/log/*
+prescan/examples/PrescanDemoAMC/Results/*
 prescan/examples/PrescanDemoAMC/*.xml
-prescan/examples/PrescanDemoAMC/*.bin
 
 # If you have a specific environment or other sensitive files
 .env
