@@ -45,6 +45,7 @@ logs/
 *.log
 */traffic_configuration.xml
 */vehicle_configuration.xml
+*/viewer_assignment.bin
 
 # If you have a specific environment or other sensitive files
 .env

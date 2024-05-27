@@ -2,7 +2,6 @@
 % this code can be used to create a switch block so that the position of
 % the agent in Prescan can be obtained by either the Prescan path or the
 % ROS message from the Vicon system
-clc;
 clearvars -except NUTS_defined
 
 % ========================================= Scaling of the MAP =============================================
@@ -16,7 +15,7 @@ MapScaling = 10;
 % prevents changes from previous run still be present in current run
 
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');  % Convert the Prescan experiment files into MATLAB data models
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment

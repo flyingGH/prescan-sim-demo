@@ -1,8 +1,8 @@
-clc;
 clearvars -except NUTS_defined
 % --------------------------------------------------------------------------------------------------------
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+% prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment
@@ -15,7 +15,7 @@ experiment = prescan.api.experiment.loadExperimentFromFile(pbFileName);  % Load 
 
 % settings
 dummy_virtual = false;
-dummy_physical_id = 0;
+dummy_physical_id = 3;
 
 % extract all traffic light objects
 exp_obj = experiment.getAsMatlabStruct();

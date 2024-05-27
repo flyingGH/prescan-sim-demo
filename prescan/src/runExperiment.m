@@ -5,11 +5,10 @@ rosshutdown;
 %%%%%%%%%%%%%%% MODIFY HERE (START) %%%%%%%%%%%%%%%
  
 % set target linux computer name (client), as defined by the windows 'HOSTS' file
-target = 'Enter the hostname where the ROS Agent RUNS'; % MODIFY HERE, Remember to add this on the host's file
+target = 'f1tenth'; % MODIFY HERE, Remember to add this on the host's file
  
 % set the iP of this computer (host computer)
-host_ip = 'Enter this computer's IP';  % MODIFY HERE
- 
+host_ip = '10.0.0.194';  % MODIFY HERE
 %%%%%%%%%%%%%%% MODIFY HERE (END) %%%%%%%%%%%%%%%
  
 % Target PC
@@ -45,7 +44,7 @@ end
 %current run
 
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');  % Convert the Prescan experiment files into MATLAB data models
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment
@@ -55,7 +54,7 @@ experiment = prescan.api.experiment.loadExperimentFromFile(pbFileName);  % Load 
 % --------------------------------------------------------------------------------------------------------
 SimulinkFileName = pbFileName(1:end-3)+"_cs";
 
-open_system(SimulinkFileName)
+open_system(SimulinkFileName);
 
 % Change trigger constant for physical/virtual vehicles
 for i = 1:length(vec_names)
@@ -78,7 +77,6 @@ for idx = 1:length(vec_physical_names)
     % Following line just for nowtt
     physical_id = vec_info.(vec_physical_names{idx}).physical_id;
     pathTopic = ['car_', num2str(physical_id), '/path']; % Create a unique topic for this car
-    pathTopic
 
     % Create a ROS publisher for the car's path
     pathPub = rospublisher(pathTopic, 'nav_msgs/Path', 'IsLatching', true, 'DataFormat', 'struct');
@@ -115,7 +113,7 @@ for idx = 1:length(vec_physical_names)
     
     % Print a message indicating that the path is being published
     disp(['Publishing path for ' objectName]);
-    clear('pub','node')
+    clear('pub','node');
 end
 
 %%

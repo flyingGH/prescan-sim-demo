@@ -1,4 +1,4 @@
-clearvars -except NUTS_defined; clc
+clearvars -except NUTS_defined;
 % --------------------------------------------------------------------------------------------------------
 % This conmmand is equvilanc of pressing "Build" from the GUI
 % It writes the content of the GUI into the PB file
@@ -7,7 +7,7 @@ clearvars -except NUTS_defined; clc
 % prevents che changes from previous run co still be present in current run
 
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');  % Convert the Prescan experiment files into MATLAB data models
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment
@@ -75,6 +75,6 @@ for i=1:length(CarWithSensorName)
     AudiAir.maxDetectableObjects = NumberOfAgents;
 end
 % save_system
-experiment.saveToFile(strcat(pbFileName))
+experiment.saveToFile(strcat(pbFileName));
 % SimulinkFileName = pbFileName(1:end-3)+"_cs";
-prescan.api.simulink.generate
+prescan.api.simulink.generate;

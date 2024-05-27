@@ -1,5 +1,5 @@
 clc;
-addpath(genpath('src'));
+addpath(genpath('../../src'));
 disp('Creating configuration files...');
 CreateConfigurations;
 disp('Configuration files created.');

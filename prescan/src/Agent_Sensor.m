@@ -2,7 +2,6 @@
 % this code can be used to create Simulink blocks to generate ROS messages
 % of the detected objects (vehicles/pedestrians) by the sensors.
 % it works for actors of type: cars, motors, busses and trailers
-clc;
 clearvars -except NUTS_defined
 
 % ========================================= Scaling of the MAP =============================================
@@ -16,7 +15,7 @@ MapScaling = 10;
 % prevents changes from previous run still be present in current run
 
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');  % Convert the Prescan experiment files into MATLAB data models
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment

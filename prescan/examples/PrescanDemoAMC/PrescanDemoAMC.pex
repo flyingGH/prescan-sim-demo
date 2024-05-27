@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Experiment xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Description="" id="AMC_LAB_MAP_One_Car_new" UniqueId="0" Authors="" TotalSimulationTime="15.3" Built="true" EnableCollisionDetection="false" MaxNumberOfCollisions="5" EnableObjectListProvider="false" EnableTestAutomation="false" ExperimentDescription="This experiment simulates a single-agent system responding to dynamic scenariossuch as traffic lights and pedestrian movements. The map has been scaled to align with the spatial dimensions of the Autonomous Motion Control (AMC) lab at Eindhoven University of Technology. It aims to replicate real-world traffic scenarios within a controlled lab setting for detailed analysis and testing of autonomous vehicular responses." Generate3DTrajectories="false" VisualizeSensorBeams="false" VisualizeBoundingBoxes="false" Parsed="true" PrecipitationRandomSeed="0" PRESCANVersion="2023.1.0" ResourcesDir="Resources" SensorRandomSeed="0" SimulationGenerationHash="C432505270A55B2A601E8CA682C1494137F01B5B36A97FC88ACF074A33B7D4E1" UniqueExperimentIdentifier="7c16a3d9-7972-4281-889e-860601ebe51f" UniqueIdCounter="1292" VisuAidMaxRenderingDistance="750" VisuAidMinRenderingDistance="0.1" WeatherTypeName="None">
+<Experiment xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Description="" id="PrescanDemoAMC" UniqueId="0" Authors="" TotalSimulationTime="15.3" Built="true" EnableCollisionDetection="false" MaxNumberOfCollisions="5" EnableObjectListProvider="false" EnableTestAutomation="false" ExperimentDescription="This experiment simulates a single-agent system responding to dynamic scenariossuch as traffic lights and pedestrian movements. The map has been scaled to align with the spatial dimensions of the Autonomous Motion Control (AMC) lab at Eindhoven University of Technology. It aims to replicate real-world traffic scenarios within a controlled lab setting for detailed analysis and testing of autonomous vehicular responses." Generate3DTrajectories="false" VisualizeSensorBeams="false" VisualizeBoundingBoxes="false" Parsed="true" PrecipitationRandomSeed="0" PRESCANVersion="2023.1.0" ResourcesDir="Resources" SensorRandomSeed="0" SimulationGenerationHash="60D25FF22D153D3AD3A5E6F0C81BBE48EC62E38418DCEDC4BB1F8B780C9D173C" UniqueExperimentIdentifier="7c16a3d9-7972-4281-889e-860601ebe51f" UniqueIdCounter="1334" VisuAidMaxRenderingDistance="750" VisuAidMinRenderingDistance="0.1" WeatherTypeName="None">
   <Actors>
     <Actor xsi:type="GenericModel" Description="Magnolia 10 years old" id="Magnolia10y_1" UniqueId="197" SensorDetectability="Occluding" NumericalID="14" ObjectTypeID="13" ParticipateInCollisionDetection="false" DynamicsConfiguration="None" AmesimConfiguration="None" ContactConfiguration="Geometric" DiscreteModeActivated="false" FlatGround="false" Reference="false" UserSpecifiedControl="false" PhysicsSimpleDynamicsInteraction="PhysicsInheritsFromSD" ActorKind="Magnolia10y" AnimatedActor="false" CompilationSheetPicture="Magnolia10.png" HashCode="347a0d5d52009e5c50e625d27d52d00e" ModelFile="Environment\NatureElements\Trees\Magnolia\Magnolia10.osgb" GenericModelSourceFile="Environment\NatureElements\Trees\Magnolia\Magnolia10.pgmb" FileLocationType="ModelDepo" ContactWorldDetectable="false" SupportedDynamics="None">
       <Location X="6.2246232628823037" Y="7.2923978831156973" Z="0" />
@@ -8635,13 +8635,13 @@
       <VehicleGeometry TrackWidthFront="0" TrackWidthRear="0" TyreRadius="0" Wheelbase="0" />
     </Actor>
   </Actors>
-  <CompilationSheetInfo Description="" id="CompilationSheetInfo" UniqueId="1" InterpretedSimulink="AMC_LAB_MAP_One_Car_new" />
+  <CompilationSheetInfo Description="" id="CompilationSheetInfo" UniqueId="1" InterpretedSimulink="PrescanDemoAMC" />
   <ModelGenerationSettings Description="" id="ModelGenerationSettings" UniqueId="2" RoadErrorDistance="0.15" RoadErrorAngleDeg="3" TrajectoryErrorDistance="0.15" TrajectoryErrorAngleDeg="0.005" />
   <ObjectListProviderDetectableTypes />
   <Environment Description="" id="Environment" UniqueId="3">
     <Underlays>
       <Underlay xsi:type="Grass" Description="" id="Grass_1" UniqueId="196" SensorDetectability="Occluding" NumericalID="13" ObjectTypeID="17" ParticipateInCollisionDetection="false" MapDistance="1" RealDistance="1">
-        <Location X="0.28673648834229232" Y="0.072509343791621272" Z="0" />
+        <Location X="0.28673648834229232" Y="0.072509333911243382" Z="0" />
         <Orientation Bank="0" Tilt="0" Heading="0" />
         <Origin X="0.5" Y="0.5" Z="0" />
         <Size X="75" Y="40" Z="0.0099999997764825821" />
@@ -8654,7 +8654,7 @@
         <IsAbsolutePosition>false</IsAbsolutePosition>
         <GpsLocation Altitude="0">
           <Longitude Degrees="0" Minutes="0" Seconds="0.0092728717197350444" Heading="E" />
-          <Latitude Degrees="0" Minutes="0" Seconds="0.0023607085514211687" Heading="N" />
+          <Latitude Degrees="0" Minutes="0" Seconds="0.0023607082308212562" Heading="N" />
         </GpsLocation>
         <PreserveAspectRatio>false</PreserveAspectRatio>
         <AlphaThreshold>0.5</AlphaThreshold>
@@ -10707,7 +10707,7 @@
       </item>
     </ObjectProperties>
   </PreScanObjectTypeSettings>
-  <SimulationConfiguration Description="" id="SimulationConfiguration" UniqueId="10" IntegrationFrequency="20" VisualizationUpdateRatio="20" DisableVisualWorld="true" SimulationUpdateRatio="1" SimulationTimescale="1" VisScriptFile="Temp\AMC_LAB_MAP_One_Car_new.swi" TerminationVisScriptFile="Temp\AMC_LAB_MAP_One_Car_new.swt" />
+  <SimulationConfiguration Description="" id="SimulationConfiguration" UniqueId="10" IntegrationFrequency="20" VisualizationUpdateRatio="20" DisableVisualWorld="true" SimulationUpdateRatio="1" SimulationTimescale="1" VisScriptFile="Temp\PrescanDemoAMC.swi" TerminationVisScriptFile="Temp\PrescanDemoAMC.swt" />
   <Sky Description="Sky" id="Sky" UniqueId="7" SkyBoxName="SKY_Air" UseImageBasedSky="true" GenerateSkyAlbedo="0.5" GeneratedSkyTurbidity="4" ObjectTypeID="50" NumericalID="1" />
   <SpeedProfiles>
     <SpeedProfileBase xsi:type="SpeedProfile" Description="" id="SpeedProfile_1" UniqueId="280">

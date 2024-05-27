@@ -1,5 +1,3 @@
-clc;
-
 % This file creates all the necessary timers (stair generators) for 
 % each traffic light according to the user's configuration file. 
 % The traffic light colors are managed by manipulating the brightness
@@ -14,7 +12,7 @@ clc;
 %% Initial configuration (extract prescan experiment object file)
 
 % Convert the Prescan experiment to data models
-prescan.experiment.convertPexToDataModels;  % Convert the Prescan experiment files into MATLAB data models
+prescan.api.experiment.loadExperimentFromFile('PrescanDemoAMC.pb');  % Convert the Prescan experiment files into MATLAB data models
 
 % Get the default filename for the Prescan experiment
 pbFileName = prescan.experiment.getDefaultFilename;  % Get the default filename of the experiment

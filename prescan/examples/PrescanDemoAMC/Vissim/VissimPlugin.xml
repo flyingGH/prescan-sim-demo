@@ -1,7 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <TrafficSimulatorViewModel xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="2023.1.0.0" RunDuringSimulation="false" SynchronizeVehicleSignalLightsFromSimulationToPrescan="false" HasLegacyCoordinateSystem="false" ExperimentFileName="" AdditionalFileName="">
   <EgoVehicle UniqueID="0" EnableTurnIndicatorSynchronization="false" />
-  <PreScanVehicles />
+  <PreScanVehicles>
+    <Vehicle UniqueID="214" Category="100" EnableTurnIndicatorSynchronization="false" />
+    <Vehicle UniqueID="461" Category="" EnableTurnIndicatorSynchronization="false" />
+    <Vehicle UniqueID="470" Category="" EnableTurnIndicatorSynchronization="false" />
+  </PreScanVehicles>
   <ExternallyControlledVehicles />
   <Origin X="0" Y="0" />
   <TrafficLightMapping />

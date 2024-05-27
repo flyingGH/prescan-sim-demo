@@ -1,0 +1,13 @@
+# create sensor mounts and cameras
+CameraSensor_1_mount = visnodes.VisTransform.createTransformNode(r"CameraSensor_1_mount")
+scene.Ford_Fiesta_Hatchback_1.addChild(CameraSensor_1_mount)
+CameraSensor_1_mount.setTranslation(2.54999997615814, 0, 1.35000002384186)
+CameraSensor_1_mount.setRotationLegacyYUpAxes(1.5707963267948966, -1, 0, 0)
+
+CameraSensor_1 = visviewer.VisCamera(r"CameraSensor_1")
+CameraSensor_1_mount.addChild(CameraSensor_1)
+CameraSensor_1.setProjectionMatrixPerspective(1.26549766469872, 1.0056864598113691, 0.10000000149011612, 300)
+
+cameras[r"CameraSensor_1"] = VisCameras.CameraInfo(r"CameraSensor_1", CameraSensor_1, visviewer.VisViewerBase.SPECTATOR, True)
+cameras[r"CameraSensor_1"].setSensorDimensions(8.8, 6.6);cameras[r"CameraSensor_1"].setFrameRate(20)
+
