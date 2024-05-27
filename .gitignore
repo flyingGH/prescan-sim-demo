@@ -44,9 +44,8 @@ logs/
 *.DS_Store
 *.log
 *.r2018b
-*/traffic_configuration.xml
-*/vehicle_configuration.xml
-*/viewer_assignment.bin
+prescan/examples/PrescanDemoAMC/*.xml
+prescan/examples/PrescanDemoAMC/*.bin
 
 # If you have a specific environment or other sensitive files
 .env
