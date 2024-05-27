@@ -44,15 +44,8 @@ A typical hardware setup for this project would consist of:
 
 In the diagram below, the AMC lab's configuration between the various systems is showcased for both the real and simulated environments. Keep in mind that a single windows workstation the two windows workstations can be merged the communication between the different systems are showcased. 
 
-### Real Environment
-
 <p align="center">
   <img src="images/communication-real.png" width="400">
-</p>
-
-### Simulation Environment
-
-<p align="center">
   <img src="images/communication-sim.png" width="400">
 </p>
 
