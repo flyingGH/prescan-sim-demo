@@ -47,13 +47,13 @@ In the diagram below, the AMC lab's configuration between the various systems is
 ### Real Environment
 
 <p align="center">
-  <img src="docs/images/communication-real.png">
+  <img src="images/communication-real.png">
 </p>
 
 ### Simulation Environment
 
 <p align="center">
-  <img src="docs/images/communication-sim.png">
+  <img src="images/communication-sim.png">
 </p>
 
 ## Software
@@ -170,7 +170,7 @@ To execute the experiment, you will need to make sure that all the system compon
     Note 2: Make sure that you have set the boolean parameter virtual that corresponds to which car you associate as virtual or physical car. After modifying this parameter, step 8 is NOT required. In case of virtual `true`, vehicle ID is not taken into account.
     ```
     
-    For more details, consult the [building process](docs/images/prescan-steps.png) below.
+    For more details, consult the [building process](images/prescan-steps.png) below.
 
 8. Run the MATLAB script `UpdateModel.m`. This will update the simulink model and generate all the required blocks for communication with the ROS master node.
 
@@ -188,7 +188,7 @@ To showcase the capabilities of the project, a simple Prescan experiment has alr
 
 In case of changes that need to be made to some aspects of the experiment, part of the steps will need to be executed again, depending on the nature of the change. For example, small changes such as switching between virtual and physical vehicles can be run ad hoc, while editing the prescan map requires re-building the entire model. The various use cases and corresponding building process are illustrated in the following diagram.
 
-![Prescan Building Process](docs/images/prescan-steps.png)
+![Prescan Building Process](images/prescan-steps.png)
 
 
 ## Linux computer: ROS Experiment
