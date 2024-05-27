@@ -1,15 +1,8 @@
+function [] = runExperiment(target, host_ip)
+
 % This function reads the trajectory of a specific object in a Prescan experiment
 % and publishes it as a ROS message of type nav_msgs/Path
 rosshutdown;
-
-%%%%%%%%%%%%%%% MODIFY HERE (START) %%%%%%%%%%%%%%%
- 
-% set target linux computer name (client), as defined by the windows 'HOSTS' file
-target = 'f1tenth'; % MODIFY HERE, Remember to add this on the host's file
- 
-% set the iP of this computer (host computer)
-host_ip = '10.0.0.194';  % MODIFY HERE
-%%%%%%%%%%%%%%% MODIFY HERE (END) %%%%%%%%%%%%%%%
  
 % Target PC
 rosinit(target);

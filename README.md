@@ -48,16 +48,22 @@ The target is used to run the virtual models of the vehicles
 
 ### Network Connection
 
-The host and the target should be connected to a **common** network (within the same subnet). If the target is a virtual machine, the network. The following information must be noted down:
+The host and the target should be connected to a **common** network. The host and the target can be connected in a manner of either **NAT** or **bridged**:
 
-- `hostip`: the IP address of the host in the **external network**;
-- `hostname`: the name of the host;
-- `targetip`: the IP address of the target in the **internal network**;
-- `targetname`: the name of the target.
+- **NAT**: the host and the target are connected via an (internal) common network, while only the host is connected with the external network. If the target is a virtual machine, this is achieved by choosing **NAT** in the **network adapter** option.
+
+- **Bridged**: both the host and the target are connected in the same common network. If the target is a virtual machine, this is achieved by choosing **bridged** in the **network adapter** option.
 
 <p align="center">
-  <img src="wiki/images/communication-sim.png">
+  <img src="docs/images/nat.png" width="400">
+  <img src="docs/images/bridge.png" width="400">
 </p>
+
+The following information must be noted down:
+
+- `hostip`: the IP address of the host in the **external network** (for **NAT** case) or in the **common network** (for **bridged** case);
+- `targetip`: the IP address of the target in the **common network**;
+- `targetname`: the name of the target.
 
 
 ## Quick Installation
@@ -73,7 +79,7 @@ You can configure the linux system from scratch by installing ROS and Python by 
 - Navigate to `SymAware(Projectfolder)/WP5 Use Cases/PreScan Demonstrator`;
 - Download the system image `Lubuntu_64-bit_f1tenth_26-04-2022.zip`;
 - Install [VMware Workstation Player](https://www.vmware.com/products/workstation-player.html), no version required;
-- Create a Lubuntu virtual machine using image `Lubuntu_64-bit_f1tenth_26-04-2022.zip`;
+- Create a Lubuntu virtual machine by loading the virtual disk in `Lubuntu_64-bit_f1tenth_26-04-2022.zip`;
 
 
 #### 2. Configure Linux system
@@ -94,12 +100,12 @@ source /opt/ros/melodic/setup.bash
 ```
 export ROS_MASTER_URI=http://targetip:11311
 ```
-Here, you **MUST** replace `targetip` with the ip address that you just noted down.
+Here, you **MUST** replace `targetip` with the ip address that you just noted down. For easy configuration, you can directly set it as `localhost` which by default refers to the ip address of the local machine.
 
 #### 4. Configure ROS package
 
 - At the `home` directory `~/` of the Lubuntu system, create a new folder `~/catkin_ws` and a new subfolder `~/catkin_ws/src`;
-- Copy paste the `pure_pursuit` directory under folder `ROS/` of this repository to `~/catkin_ws/src/pure_pursuit`;
+- Copy paste the `agent` directory under folder `ROS/` of this repository to `~/catkin_ws/src/agent`;
 - Navigate back to `~/catkin_ws`, in terminal, run `catkin_make` for a normal ROS compilation (Refer to ROS forums if you have problems in this step);
 - After successful compilation, you need to open the configuration file `~/.bashrc` as in step **2** and **3**, again, to make sure it contains
 ```
@@ -134,21 +140,44 @@ To normally run the simulation, you **must** first run the ROS network on the ta
 
 ### Initialize the Host
 
-- Open `Prescan Process Manager 2302`;
+- Open `Prescan Process Manager 2302`; The following dialog should shows up:
+<p align="center">
+  <img src="docs/images/manager.png" width="250">
+</p>
+
+#### Build the Prescan map
+
+- In the panel of the manager, click `start` button under `GUI`; This will start Prescan GUI; This step will fail if you have not properly configured the Prescan license;
+- In Prescan GUI, open the project file `prescan\examples\PrescanDemoAMC\PrescanDemoAMC.pex`, ignoring warnings, the following window should show up; Refer to Prescan manuals on how to custormize a map;
+<p align="center">
+  <img src="docs/images/gui.png" width="600">
+</p>
+
+- Click the `Parse` button to validate the environment; After successful parsing, click the `Build` button to build the project. This process should be performed each time you modify the map.
+
+#### Configure the MATLAB script
+
 - In the panel of the manager, click `start` button under `Matlab`; This will start MATLAB 2022b; This step will fail if you have not successfully install the correct version of MATLAB; Consult with Siemens if you have questions;
 - For the first time you open MATLAB in this way, it may take several minutes for initialization; You will have errors if you lack necessary packages;
-- After initialization finishes and the prompt `>>` shows up, navigate to the `PreScan/experiments/AMC_LAB_MAP_One_car/` directory, open the Simulink model file `AMC_LAB_MAP_One_Car_cs.slx`.
-- In the same directory, open the script file `runExperiment.m`; make the following modification:
-```
-target = 'targetname'
-host_ip = hostip
-```
+- It is always suggested to run MATLAB through Prescan manager, such that the Prescan libraries can be properly loaded;
+- In MATLAB, navigate to `/prescan/examples/PrescanDemoAMC`, open the main script `main.m`, navigate to the following block, and modify the variables `target_name` and `host_ip` accordingly.
+    ```
+    %%%%%%%%%%%%%%% MODIFY HERE (START) %%%%%%%%%%%%%%%
+    
+    % set target linux computer name (client), as defined by the windows 'HOSTS' file
+    target_name = 'XXX'; % MODIFY HERE, Remember to add this on the host's file
+    
+    % set the iP of this computer (host computer)
+    host_ip = 'XXX.XXX.XXX.XXX';  % MODIFY HERE
+    %%%%%%%%%%%%%%% MODIFY HERE (END) %%%%%%%%%%%%%%%
+    ```
 
-### Target Side
+
+### Run Experiment: Target Side
 
 - In terminal, run
     ```
-    roslaunch pure_pursuit agent.launch env:=sim safety:=true
+    roslaunch agent agent.launch env:=sim safety:=true
     ```
 
     Optional arguments:
@@ -162,11 +191,11 @@ host_ip = hostip
     - **`offline`:** this flag enables the script to work independently from the windows computer. It internally 'simulates' all the necessary topics that would be otherwise sent by MATLAB. Since traffic lights and pedestrians are not internally modeled, this flag cannot be used when the safety flag is enabled.
     - **`rviz`:** this launches a pre-configured RViZ session for debugging. This flas is only available when used with a `sim` environment due to F1tenth's lack of a display. However, you can separately run this node in another local linux computer  as shown in step 4. Default is `true`.
 
-### Host Side
-- Run the `runExperiment.m` script, allowing the prompted folder changes. This should also start the Prescan Viewer. There might be a dialog prompting reminding the usage of integrated graphic card, for which you need to click it out. 
-- Then, the Prescan Viewer should start rendering the simulation; You will see a vehicle waiting in front of the red traffic light. After a while, when the traffic light turns green, the car will continue to move. The simulation looks like this:
+### Run Experiment: Host Side
+- Under directory `prescan\examples\PrescanDemoAMC`, run the `main.m` script, allowing the prompted folder changes. This should also start the Prescan Viewer. There might be a dialog prompting reminding the usage of integrated graphic card, for which you need to click it out. 
+- Running the script may take several minutes to render and update models. Ultimately, the Prescan Viewer should start rendering the simulation; You will see a vehicle waiting in front of the red traffic light. After a while, when the traffic light turns green, the car will continue to move. The simulation looks like this:
 
-    ![Demonstration of the F1TENTH Car System](wiki/gifs/sim.gif)
+    ![Demonstration of the F1TENTH Car System](docs/gifs/sim.gif)
 
 ### Debugging in ROS
 
@@ -198,4 +227,4 @@ To normally exit the simulation, you must **first** stop MATLAB simulation and *
 - On the target side, press `ctrl + C` in terminal to terminate the ROS server.
 
 ### Running the simulation again
-- Follow above steps to first launch ROS in the target, and then run the MATLAB script in the host. Keep in mind you must keep the Simulink model `AMC_LAB_MAP_One_Car_cs.slx` open.
+- Follow above steps to first launch ROS in the target, and then run the MATLAB `main.m` script in the host. In most of the time, you can keep the ROS nodes alive without shutting them down every time.

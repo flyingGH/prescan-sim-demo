@@ -43,6 +43,7 @@ logs/
 *.swn
 *.DS_Store
 *.log
+*.r2018b
 */traffic_configuration.xml
 */vehicle_configuration.xml
 */viewer_assignment.bin
