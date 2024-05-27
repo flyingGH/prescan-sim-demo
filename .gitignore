@@ -29,13 +29,13 @@ logs/
 !.vscode/extensions.json
 
 # MATLAB or Simulink
-prescan/examples/PrescanDemoAMC/*.slxc
+prescan/examples/*/*.slxc
 prescan/examples/*/*.slx
-prescan/examples/PrescanDemoAMC/*.pb
-prescan/examples/PrescanDemoAMC/*.references
-prescan/examples/PrescanDemoAMC/*.tunable
-prescan/examples/PrescanDemoAMC/*.mat
-prescan/examples/PrescanDemoAMC/*.asv
+prescan/examples/*/*.pb
+prescan/examples/*/*.references
+prescan/examples/*/*.tunable
+prescan/examples/*/*.mat
+prescan/examples/*/*.asv
 prescan/examples/*/*.r2018b
 
 # Others
@@ -46,15 +46,15 @@ prescan/examples/*/*.r2018b
 *.log
 
 # Prescan
-prescan/examples/PrescanDemoAMC/+bus_conv_fcns/*
-prescan/examples/PrescanDemoAMC/Models/*
-prescan/examples/PrescanDemoAMC/Temp/*
-prescan/examples/PrescanDemoAMC/slprj/*
-prescan/examples/PrescanDemoAMC/Actors/*
-prescan/examples/PrescanDemoAMC/log/*
-prescan/examples/PrescanDemoAMC/Results/*
-prescan/examples/PrescanDemoAMC/*.xml
-prescan/examples/PrescanDemoAMC/*.backup
+prescan/examples/*/+bus_conv_fcns/*
+prescan/examples/*/Models/*
+prescan/examples/*/Temp/*
+prescan/examples/*/slprj/*
+prescan/examples/*/Actors/*
+prescan/examples/*/log/*
+prescan/examples/*/Results/*
+prescan/examples/*/*.xml
+prescan/examples/*/*.backup
 
 # If you have a specific environment or other sensitive files
 .env
