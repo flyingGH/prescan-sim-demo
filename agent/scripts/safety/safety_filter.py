@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 # System Libraries
-import os
+import os, json
 import math
 import re
 import sys; print(sys.version); sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,6 +23,10 @@ from env.driver import Driver
 from utils.rostools import set_subscribers
 from utils import tools as tls
 from config.ros import VERBOSE_LEVEL
+from machine import MooreStateMachine
+
+cur_dir = os.getcwd()
+
 
 class SafetyFilter(object):
     
@@ -34,6 +38,7 @@ class SafetyFilter(object):
         self.position = Point(0., 0., 0.)
         self.yaw = 0.0
         self.entities = {}
+	self.sm = MooreStateMachine('/home/student/catkin_ws/src/agent/scripts/safety/sm_tables.json')
 
         self.max_speed = rospy.get_param('max_speed') if self.env == 'sim' else rospy.get_param('vesc_driver/speed_max')
             
@@ -198,13 +203,25 @@ class SafetyFilter(object):
             current_closest_obj = em_objects[current_min_idx]
 
             # rospy.logwarn_throttle(0.5, 'Current min dist: %.2f, Stop dist: %.2f' % (current_min_dist, current_closest_obj.stop_dist))
-
+	    
             # Check if within stopping range
-            if self.env == 'sim':
-                speed = 0.0
-            elif current_min_dist < current_closest_obj.min_stop_dist:
-                speed = 0.0
+            #if self.env == 'sim':
+                #speed = 0.0
+            if current_min_dist < current_closest_obj.min_stop_dist:
+		# Take emergency stop
+                self.sm.reaction(False, True)
             elif current_min_dist < current_closest_obj.stop_dist:
+		# Decelerate, no emergency stop
+		self.sm.reaction(True, False)		
+            else:
+		# No need to decelerate nor stop
+		self.sm.reaction(False, False)
+
+	    out = self.sm.get_output()
+
+	    if out == 'STOP':
+		speed = 0.0
+	    elif out == 'DECEL':
 
                 # Calculate deceleration needed based on distance to the nearest entity and stopping distance
                 deceleration = (speed ** 2) / (2 * (current_min_dist - current_closest_obj.min_stop_dist))
@@ -216,7 +233,7 @@ class SafetyFilter(object):
 
                 # Ensure speed does not go below zero
                 speed = np.clip(speed, 0, self.max_speed)
-
+	    
         # Create message and publish action
         filtered_drive_msg = Twist(Vector3(speed, 0., 0.), Vector3(0., 0., steering_angle))
         flag_msg = Bool(np.any(self.emergency_state))

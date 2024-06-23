@@ -31,4 +31,5 @@ class Driver(DynamicEntity):
         self.driver_same_dir_range = rospy.get_param("driver_same_dir_range")
 
     def is_same_direction(self, source_heading):
+        # print("is_same_direction:, self.heading:%.2f, source_heading:%.2f, diff:%.2f" % (np.rad2deg(self.heading), np.rad2deg(source_heading), np.rad2deg(np.abs(self.heading - source_heading))))
         return np.abs(self.heading - source_heading) <= self.driver_same_dir_range

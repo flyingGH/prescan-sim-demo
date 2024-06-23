@@ -3,7 +3,7 @@
 # System Imports
 from __future__ import print_function
 import os
-import math
+import math, os
 import sys; print(sys.version); sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # External Libraries
@@ -17,6 +17,12 @@ from tf.transformations import quaternion_from_euler, euler_from_quaternion
 # Local Imports
 from config.ros import VERBOSE_LEVEL, WARN_FREQ, DEBUG_FREQ
 from utils.rostools import set_subscribers
+import torch
+import numpy as np
+from model import PredictionNet
+
+cur_dir = os.getcwd()
+
 
 class Simulator():
 
@@ -34,17 +40,34 @@ class Simulator():
             self.v = v
             self.rear_x = self.x - ((Simulator.wheel_base / 2) * math.cos(self.yaw))
             self.rear_y = self.y - ((Simulator.wheel_base / 2) * math.sin(self.yaw))
+
+	    self.hist = np.zeros((1, 1, 50))
+	    self.net = PredictionNet(out_len=1, batch_size=30)
+	    net_state_dict = torch.load('/home/student/catkin_ws/src/agent/scripts/simulator/net_state_dict.pth')
+	    self.net.load_state_dict(net_state_dict)
+	    
             # print('Vehicle state initialized at Initial Position: %f, %f, %f' %(self.x, self.y, self.yaw))
 
-        def update(self, a, delta):
+        def update(self, a, delta, desired_velocity):
             #NOTE Convention for the following equations:
             #       Steering angle is increasing in the CW (in contrast to real VESC increasing IN CCW)
             delta = -delta
 
+	    self.hist[:, :, :-1] = self.hist[:, :, 1:]
+	    self.hist[:, :, -1] = desired_velocity
+	    
+
             self.x += self.v * math.cos(self.yaw) * Simulator.dt
             self.y += self.v * math.sin(self.yaw) * Simulator.dt
             self.yaw += (1 / Simulator.wheel_base) * self.v * math.tan(delta) * Simulator.dt
-            self.v += a * Simulator.dt
+            # self.v += a * Simulator.dt
+	    # self.v += self.net(torch.tensor(self.hist).float())[0, 0, 0].detach().numpy() * Simulator.dt
+	    
+	    v_temp = self.net(torch.tensor(self.hist).float())[0, 0, 0].detach().numpy()
+	    if v_temp > 0.15:
+		self.v = v_temp
+	    else: 
+		self.v = 0
             # print(np.rad2deg(delta))
             self.rear_x = self.x - ((Simulator.wheel_base / 2) * math.cos(self.yaw))
             self.rear_y = self.y - ((Simulator.wheel_base / 2) * math.sin(self.yaw))
@@ -106,6 +129,7 @@ class Simulator():
         self.desired_velocity = msg.linear.x
         self.desired_steering_angle = msg.angular.z
 
+
     def _prescan_status_callback(self, msg):
         self.system_ready = msg.data
 
@@ -132,7 +156,7 @@ class Simulator():
         #                         self.current_state.y)
 
         # update state
-        self.current_state.update(speed_step, self.desired_steering_angle)
+        self.current_state.update(speed_step, self.desired_steering_angle, self.desired_velocity)
 
         # create pose message
         pose_msg = PoseStamped()

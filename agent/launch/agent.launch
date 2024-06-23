@@ -20,6 +20,20 @@
 
   <!-- choose the preferred car to work with -->
   <arg name="car_id" default="3"/>
+  
+  
+  <group if="$(eval arg('env') == 'real_car')">
+        <!-- vicon client node -->
+      <node name="vrpn_client_node" pkg="vrpn_client_ros" type="vrpn_client_node" output="screen">
+        <param name="server" type="str" value="131.155.34.241" />
+        <param name="port" type="int" value="3883" />
+        <param name="update_frequency" type="double" value="100.0" />
+        <param name="frame_id" type="str" value="world" />
+        <param name="use_server_time" type="bool" value="false"/>
+        <param name="broadcast_tf" type="bool" value="true" />
+        <param name="refresh_tracker_frequency" type="double" value="1.0" />
+      </node>
+  </group>  
 
   <group ns="car_$(arg car_id)">
     <param name="car_id" value="$(arg car_id)"/>
@@ -77,17 +91,6 @@
       <!-- enable VESC -->
       <node name="vesc_driver_node" pkg="vesc_driver" type="vesc_driver_node" output="screen">
         <param name="port" value="/dev/sensors/vesc"/>
-      </node>
-
-      <!-- vicon client node -->
-      <node name="vrpn_client_node" pkg="vrpn_client_ros" type="vrpn_client_node" output="screen">
-        <param name="server" type="str" value="131.155.34.241" />
-        <param name="port" type="int" value="3883" />
-        <param name="update_frequency" type="double" value="100.0" />
-        <param name="frame_id" type="str" value="world" />
-        <param name="use_server_time" type="bool" value="false"/>
-        <param name="broadcast_tf" type="bool" value="true" />
-        <param name="refresh_tracker_frequency" type="double" value="1.0" />
       </node>
 
       <!-- Send zeros to start vesc_to_odom-->

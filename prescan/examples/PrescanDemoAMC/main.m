@@ -14,6 +14,6 @@ disp('Running the experiment...');
 target_name = 'f1tenth'; % MODIFY HERE, Remember to add this on the host's file
  
 % set the iP of this computer (host computer)
-host_ip = '10.0.0.194';  % MODIFY HERE
+host_ip = '10.188.56.119';  % MODIFY HERE
 %%%%%%%%%%%%%%% MODIFY HERE (END) %%%%%%%%%%%%%%%
 runExperiment(target_name, host_ip);

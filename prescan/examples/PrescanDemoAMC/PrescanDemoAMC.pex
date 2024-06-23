@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Experiment xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Description="" id="PrescanDemoAMC" UniqueId="0" Authors="" TotalSimulationTime="15.3" Built="true" EnableCollisionDetection="false" MaxNumberOfCollisions="5" EnableObjectListProvider="false" EnableTestAutomation="false" ExperimentDescription="This experiment simulates a single-agent system responding to dynamic scenariossuch as traffic lights and pedestrian movements. The map has been scaled to align with the spatial dimensions of the Autonomous Motion Control (AMC) lab at Eindhoven University of Technology. It aims to replicate real-world traffic scenarios within a controlled lab setting for detailed analysis and testing of autonomous vehicular responses." Generate3DTrajectories="false" VisualizeSensorBeams="false" VisualizeBoundingBoxes="false" Parsed="true" PrecipitationRandomSeed="0" PRESCANVersion="2023.1.0" ResourcesDir="Resources" SensorRandomSeed="0" SimulationGenerationHash="D1CFF3B272C68668F04117090BC800F83B854EC65FA8713362E1ED7C55A0FF51" UniqueExperimentIdentifier="7c16a3d9-7972-4281-889e-860601ebe51f" UniqueIdCounter="1460" VisuAidMaxRenderingDistance="750" VisuAidMinRenderingDistance="0.1" WeatherTypeName="None">
+<Experiment xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Description="" id="PrescanDemoAMC" UniqueId="0" Authors="" TotalSimulationTime="15.3" Built="true" EnableCollisionDetection="false" MaxNumberOfCollisions="5" EnableObjectListProvider="false" EnableTestAutomation="false" ExperimentDescription="This experiment simulates a single-agent system responding to dynamic scenariossuch as traffic lights and pedestrian movements. The map has been scaled to align with the spatial dimensions of the Autonomous Motion Control (AMC) lab at Eindhoven University of Technology. It aims to replicate real-world traffic scenarios within a controlled lab setting for detailed analysis and testing of autonomous vehicular responses." Generate3DTrajectories="false" VisualizeSensorBeams="false" VisualizeBoundingBoxes="false" Parsed="true" PrecipitationRandomSeed="0" PRESCANVersion="2023.1.0" ResourcesDir="Resources" SensorRandomSeed="0" SimulationGenerationHash="F8C6B8758FB130A7BFD823FB3BD4BB14545954EA170345D15BD2FABCCAA619A6" UniqueExperimentIdentifier="7c16a3d9-7972-4281-889e-860601ebe51f" UniqueIdCounter="1544" VisuAidMaxRenderingDistance="750" VisuAidMinRenderingDistance="0.1" WeatherTypeName="None">
   <Actors>
     <Actor xsi:type="GenericModel" Description="Magnolia 10 years old" id="Magnolia10y_1" UniqueId="197" SensorDetectability="Occluding" NumericalID="14" ObjectTypeID="13" ParticipateInCollisionDetection="false" DynamicsConfiguration="None" AmesimConfiguration="None" ContactConfiguration="Geometric" DiscreteModeActivated="false" FlatGround="false" Reference="false" UserSpecifiedControl="false" PhysicsSimpleDynamicsInteraction="PhysicsInheritsFromSD" ActorKind="Magnolia10y" AnimatedActor="false" CompilationSheetPicture="Magnolia10.png" HashCode="347a0d5d52009e5c50e625d27d52d00e" ModelFile="Environment\NatureElements\Trees\Magnolia\Magnolia10.osgb" GenericModelSourceFile="Environment\NatureElements\Trees\Magnolia\Magnolia10.pgmb" FileLocationType="ModelDepo" ContactWorldDetectable="false" SupportedDynamics="None">
       <Location X="6.2246232628823037" Y="7.2923978831156973" Z="0" />
@@ -8641,7 +8641,7 @@
   <Environment Description="" id="Environment" UniqueId="3">
     <Underlays>
       <Underlay xsi:type="Grass" Description="" id="Grass_1" UniqueId="196" SensorDetectability="Occluding" NumericalID="13" ObjectTypeID="17" ParticipateInCollisionDetection="false" MapDistance="1" RealDistance="1">
-        <Location X="0.28673648834229226" Y="0.072509300035662028" Z="0" />
+        <Location X="0.28673648834229226" Y="0.07250927745194112" Z="0" />
         <Orientation Bank="0" Tilt="0" Heading="0" />
         <Origin X="0.5" Y="0.5" Z="0" />
         <Size X="75" Y="40" Z="0.0099999997764825821" />
@@ -8654,7 +8654,7 @@
         <IsAbsolutePosition>false</IsAbsolutePosition>
         <GpsLocation Altitude="0">
           <Longitude Degrees="0" Minutes="0" Seconds="0.0092728717197350426" Heading="E" />
-          <Latitude Degrees="0" Minutes="0" Seconds="0.0023607071316215584" Heading="N" />
+          <Latitude Degrees="0" Minutes="0" Seconds="0.00236070639882176" Heading="N" />
         </GpsLocation>
         <PreserveAspectRatio>false</PreserveAspectRatio>
         <AlphaThreshold>0.5</AlphaThreshold>

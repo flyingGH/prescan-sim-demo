@@ -40,13 +40,12 @@ class ViconToOdom(object):
         self.twist_msg = TwistStamped()
 
         # Set up subscriber
-        set_subscribers([
-            (self.pose_topic, PoseStamped, self._pose_callback, False),
-            (self.twist_topic, TwistStamped, self._twist_callback, False),
-        ], subscribe=True)
+
 
         if self.env == 'sim' and self.agent_name == 'pure_pursuit':
             set_subscribers([
+                (self.pose_topic, PoseStamped, self._pose_callback, False),
+ 	        (self.twist_topic, TwistStamped, self._twist_callback, False),
                 (rospy.get_param('path_topic'), Path, self._path_callback, True)
             ], subscribe=True)
 
@@ -59,6 +58,11 @@ class ViconToOdom(object):
             twist.linear = Vector3(0., 0., 0.)
             twist.angular = Vector3(0., 0., 0.)
             self.twist_msg.twist = twist
+        else:
+            set_subscribers([
+            	(self.pose_topic, PoseStamped, self._pose_callback, True),
+            	(self.twist_topic, TwistStamped, self._twist_callback, True),
+	        ], subscribe=True)
         self._push_odom()
 
     # -- Callbacks (private)
