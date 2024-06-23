@@ -44,7 +44,15 @@ The target is used to run the virtual models of the vehicles
 - Linux 18.04 LTS
 - ROS melodic
 - Python 2.7
-    - `numpy`
+    - `numpy 1.16.6`
+    - `scipy 1.2.3`
+    - `torch 1.4.0 (cpu only)`
+    - `torchvision 0.5.0 (cpu only)`
+    - `future 1.0.0`
+    - `matplotlib 2.1.1`
+    - `mpi4py 2.0.0`
+
+
 
 ### Network Connection
 
@@ -72,26 +80,27 @@ The following information must be noted down:
 
 #### 1. Install Linux system
 
-You can configure the linux system from scratch by installing ROS and Python by hand. But we strongly suggest you directly use Linux image which is available at the `SymAware` sharing point.
+You can configure the linux system from scratch by installing ROS and Python by hand. But we strongly suggest you directly use the Lubuntu virtual disk which is available at [TU/e sharing point](https://tue.data.surfsara.nl/index.php/s/8CAQDirFDq5j8hi). Install [VMware Workstation Player](https://www.vmware.com/products/workstation-player.html), no version required, and create a Lubuntu virtual machine by loading the downloaded virtual disk named `Lubuntu_64-bit_f1tenth_26-04-2022.zip`.
 
-- Open the `SymAware` sharing point at [https://tue.data.surfsara.nl/index.php/login](https://tue.data.surfsara.nl/index.php/login);
-- Login using your credential;
-- Navigate to `SymAware(Projectfolder)/WP5 Use Cases/PreScan Demonstrator`;
-- Download the system image `Lubuntu_64-bit_f1tenth_26-04-2022.zip`;
-- Install [VMware Workstation Player](https://www.vmware.com/products/workstation-player.html), no version required;
-- Create a Lubuntu virtual machine by loading the virtual disk in `Lubuntu_64-bit_f1tenth_26-04-2022.zip`;
+After loading the virtual machine, turn the Lubuntu system on. The account and password of the system are both `student`.
 
+#### 2. Install required Python packages
 
-#### 2. Configure Linux system
+This demo uses Python 2.7 for simulation. The downloaded virtual system has been equipped with most of required packages, except `pytorch` and `future`. Install these two packages using the following commands.
+```
+pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+pip install future
+```
 
-- Turn on the Lubuntu system; The account and password of the system are both `student`;
+#### 3. Configure ROS
+
 - The system has pre-installed the correct versions of ROS and Python;
 - Open terminal, type `nano ~/.bashrc`; This will open the configuration file `.bashrc`. Make sure it contains the following command:
 ```
 source /opt/ros/melodic/setup.bash
 ```
 
-#### 3. Note down network information
+#### 4. Note down network information
 
 
 - Open terminal of Lubuntu, note down its name as `targetname`;
@@ -102,7 +111,7 @@ export ROS_MASTER_URI=http://targetip:11311
 ```
 Here, you **MUST** replace `targetip` with the ip address that you just noted down. For easy configuration, you can directly set it as `localhost` which by default refers to the ip address of the local machine.
 
-#### 4. Configure ROS package
+#### 5. Configure ROS package
 
 - At the `home` directory `~/` of the Lubuntu system, create a new folder `~/catkin_ws` and a new subfolder `~/catkin_ws/src`;
 - Copy paste the `agent` directory under folder `ROS/` of this repository to `~/catkin_ws/src/agent`;
@@ -112,7 +121,7 @@ Here, you **MUST** replace `targetip` with the ip address that you just noted do
 source ~/catkin_ws/devel/setup.bash
 ```
 
-#### 5. Last confirmation
+#### 6. Last confirmation
 
 Before finishing, make sure the following commands show up in `~/.bashrc`:
 ```
