@@ -50,8 +50,6 @@ The target is used to run the virtual models of the vehicles
     - `torchvision 0.5.0 (cpu only)`
     - `future 1.0.0`
     - `matplotlib 2.1.1`
-    - `mpi4py 2.0.0`
-
 
 
 ### Network Connection
