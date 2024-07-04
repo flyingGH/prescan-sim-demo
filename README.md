@@ -78,7 +78,7 @@ The following information must be noted down:
 
 #### 1. Install Linux system
 
-You can configure the linux system from scratch by installing ROS and Python by hand. But we strongly suggest you directly use the Lubuntu virtual disk which is available at [TU/e sharing point](https://tue.data.surfsara.nl/index.php/s/8CAQDirFDq5j8hi). Install [VMware Workstation Player](https://www.vmware.com/products/workstation-player.html), no version required, and create a Lubuntu virtual machine by loading the downloaded virtual disk named `Lubuntu_64-bit_f1tenth_26-04-2022.zip`.
+You can configure the linux system from scratch by installing ROS and Python by hand. But we strongly suggest you directly use the Lubuntu virtual disk which is available at [TU/e sharing point](https://tue.data.surfsara.nl/index.php/s/8CAQDirFDq5j8hi). Install VMware Workstation Player, no version required, and create a Lubuntu virtual machine by loading the downloaded virtual disk named `Lubuntu_64-bit_f1tenth_26-04-2022.zip`.
 
 After loading the virtual machine, turn the Lubuntu system on. The account and password of the system are both `student`.
 
